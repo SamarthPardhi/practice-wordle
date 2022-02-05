@@ -62,7 +62,6 @@ def filter_master_words_list(words_l):
 
 if __name__ == "__main__":
     my_word = master_words_list[random.randint(0,len(master_words_list)-1)]
-    print(my_word)
     words_list += master_words_list
     yellow_words = []
     green_words = []

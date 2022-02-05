@@ -1,5 +1,10 @@
 import random
 from termcolor import colored
+from words import master_words_list, words_list
+
+words_list = [i.upper() for i in words_list]
+master_words_list = [i.upper() for i in master_words_list]
+words_list += master_words_list
 
 
 def all_alpha(s:str):
@@ -8,14 +13,6 @@ def all_alpha(s:str):
     for i in s:
         if not i in alphabets:
             return False
-    return True
-
-
-def update_wordle_file(wordle_filename, words_filename_obj):
-    file = open(wordle_filename,'w')
-    for word in words_filename_obj:
-        if len(word.strip()) == 5 and all_alpha(word.strip()) and not word.strip().isupper():
-            file.write(word.strip()+str('\n'))
     return True
 
 def ind(my_word, given_word):
@@ -43,7 +40,6 @@ def decorated_alpha(l:list):
             s+=letter
     return s
 
-
 def print_meth(my_word, given_word, yellow_words, green_words, red_words):
     green_ind, yellow_ind = ind(my_word, given_word)
     word_splitted = [i for i in given_word]
@@ -64,18 +60,10 @@ def print_meth(my_word, given_word, yellow_words, green_words, red_words):
 def filter_master_words_list(words_l):
     return words_l
 
-
 if __name__ == "__main__":
-    words_filename_obj = open('words.txt','r')
-    wordle_filename = 'wordle_words.txt'
-    update_wordle_file(wordle_filename, words_filename_obj)
-
-    wordle_file_obj = open(wordle_filename, 'r')
-    words_list = [i.strip().upper() for i in wordle_file_obj]
-
-    master_words_list = filter_master_words_list(words_list)
     my_word = master_words_list[random.randint(0,len(master_words_list)-1)]
-
+    print(my_word)
+    words_list += master_words_list
     yellow_words = []
     green_words = []
     red_words = []
